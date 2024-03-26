@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icons8-high-temperature-hazard-16.png" type="image/x-icon">
+    <title>Conversor de temperatura</title>
+</head>
+<body> 
+    <section class="card-style">
+        <h1>Conversor de temperatura</h1>
+
+        <label for="unidadeDeEntrada">De:</label>
+        <select id="unidadeDeEntrada">
+            <option value="F">Fahrenheit</option>
+            <option value="C">Celsius</option>
+            <option value="K">Kelvin</option>
+        </select>
+        <label for="unidadeDeSaida">Para:</label>
+        <select id="unidadeDeSaida">
+            <option value="F">Fahrenheit</option>
+            <option value="C">Celsius</option>
+            <option value="K">Kelvin</option>
+        </select>
+        <label for="temperatura">Temperatura</label>
+        <input type="number" id="temperatura" placeholder="Digite um valor">
+                
+        <button onclick="converterTemperatura()">Converter</button>
+
+        <label for="resultado">Resultado:</label>
+        <input type="text" id="resultado" readonly>
+    </section>
+            
+    <script type="text/javascript">
+        function converterTemperatura(){
+            var unidadeDeEntrada = document.getElementById('unidadeDeEntrada').value;
+            var unidadeDeSaida = document.getElementById('unidadeDeSaida').value;
+            var temperatura = parseFloat(document.getElementById('temperatura').value);
+                        
+            var converterValor;
+            var resultadoUnidade;
+
+            switch(unidadeDeEntrada){
+                case 'C':
+                    if (unidadeDeSaida === 'F'){
+                        converterValor = (temperatura * 9 / 5) + 32;
+                        resultadoUnidade = 'ºF';
+                    }
+                    else if (unidadeDeSaida === 'K'){
+                        converterValor = temperatura + 273.15;
+                        resultadoUnidade = 'ºK';
+                    }
+                    else{
+                        converterValor = temperatura;
+                        resultadoUnidade = 'ºC';
+                    }
+                    break;
+
+                case 'F':
+                    if(unidadeDeSaida === 'C'){
+                        converterValor = (temperatura - 32) * 5 / 9;
+                        resultadoUnidade = 'ºC';
+                    }
+                    else if (unidadeDeSaida === 'K'){
+                        converterValor = (temperatura + 459.67) * 5 / 9;
+                        resultadoUnidade = 'ºK';
+                    }  
+                    else {
+                        converterValor = temperatura;
+                        resultadoUnidade = 'ºF';
+                    }
+                    break;
+                                
+                case 'K':
+                    if (unidadeDeSaida === 'C') {
+                    converterValor = (temperatura - 273.15);
+                    resultadoUnidade = 'ºC';
+                    }
+                    else if (unidadeDeSaida === 'F') {
+                        converterValor = (temperatura * 9 / 5) - 459.67;
+                        resultadoUnidade = 'ºF';
+                    }
+                    else {
+                        converterValor = temperatura;
+                        resultadoUnidade = 'ºK';
+                    }
+                    break;     
+            }
+                        
+            document.getElementById('resultado').value = converterValor.toFixed(2) + ' ' + resultadoUnidade;
+        }
+
+    </script>
+</body>
+</html>
