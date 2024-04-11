@@ -30,16 +30,18 @@
 
         <label for="resultado">Resultado:</label>
         <input type="text" id="resultado" readonly>
+
+        <button onclick="reiniciar()">Reiniciar</button>
     </section>
             
     <script type="text/javascript">
         function converterTemperatura(){
-            var unidadeDeEntrada = document.getElementById('unidadeDeEntrada').value;
-            var unidadeDeSaida = document.getElementById('unidadeDeSaida').value;
-            var temperatura = parseFloat(document.getElementById('temperatura').value);
+            const unidadeDeEntrada = document.getElementById('unidadeDeEntrada').value;
+            const unidadeDeSaida = document.getElementById('unidadeDeSaida').value;
+            const temperatura = parseFloat(document.getElementById('temperatura').value);
                         
-            var converterValor;
-            var resultadoUnidade;
+            let converterValor;
+            let resultadoUnidade;
 
             switch(unidadeDeEntrada){
                 case 'C':
@@ -90,7 +92,12 @@
                         
             document.getElementById('resultado').value = converterValor.toFixed(2) + ' ' + resultadoUnidade;
         }
-
+        function reiniciar() {
+            document.getElementById('unidadeDeEntrada').value = 'F';
+            document.getElementById('unidadeDeSaida').value = 'F';
+            document.getElementById('temperatura').value = '';
+            document.getElementById('resultado').value = '';
+        }
     </script>
 </body>
 </html>
